@@ -1,6 +1,8 @@
 <?php
+// api/lightbox-switcher.php
+
 // Define the path to your gallery file
-$galleryFilePath = 'gallery/index.html';
+$galleryFilePath = '../gallery/index.html';
 
 // Check if the gallery file exists
 if (file_exists($galleryFilePath)) {
