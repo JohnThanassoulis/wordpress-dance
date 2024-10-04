@@ -9,7 +9,8 @@ export default async function handler(req, res) {
         const response = await fetch(`${baseUrl}/gallery/index.html`);
         const galleryContent = await response.text();
 
-        // Replace the attributes
+        // Ensure proper replacement of attributes
+        // Use a regular expression to replace all instances of 'data-elementor-open-lightbox'
         const modifiedContent = galleryContent.replace(/data-elementor-open-lightbox/g, 'data-fslightbox');
 
         // Send the modified content as the response
