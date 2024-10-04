@@ -1,7 +1,12 @@
 export default async function handler(req, res) {
     try {
+        // Determine base URL based on environment
+        const baseUrl = process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}` // Deployed environment (Vercel)
+            : 'http://localhost:3000';           // Local development
+
         // Fetch the gallery file from the public directory
-        const response = await fetch(`${process.env.VERCEL_URL}/gallery/index.html`);
+        const response = await fetch(`${baseUrl}/gallery/index.html`);
         const galleryContent = await response.text();
 
         // Replace the attributes
