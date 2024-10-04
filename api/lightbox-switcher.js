@@ -1,13 +1,8 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-
 export default async function handler(req, res) {
     try {
-        // Get the absolute path to the gallery file within the API directory
-        const galleryFilePath = path.resolve('./api/gallery/index.html');
-
-        // Read the gallery file content
-        const galleryContent = await fs.readFile(galleryFilePath, 'utf-8');
+        // Fetch the gallery file from the public directory
+        const response = await fetch(`${process.env.VERCEL_URL}/gallery/index.html`);
+        const galleryContent = await response.text();
 
         // Replace the attributes
         const modifiedContent = galleryContent.replace(/data-elementor-open-lightbox/g, 'data-fslightbox');
