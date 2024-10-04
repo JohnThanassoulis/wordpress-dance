@@ -3,8 +3,8 @@ import path from 'path';
 
 export default async function handler(req, res) {
     try {
-        // Get the absolute path to the gallery file
-        const galleryFilePath = path.resolve('./public/gallery/index.html');
+        // Get the absolute path to the gallery file within the API directory
+        const galleryFilePath = path.resolve('./api/gallery/index.html');
 
         // Read the gallery file content
         const galleryContent = await fs.readFile(galleryFilePath, 'utf-8');
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         res.setHeader('Content-Type', 'text/html');
         res.status(200).send(modifiedContent);
     } catch (error) {
-        console.error("Error occurred:", error); // Log the error to the console for debugging
+        console.error("Error occurred:", error);
         res.status(500).json({ message: "Error reading or modifying gallery file.", error: error.toString() });
     }
 }
